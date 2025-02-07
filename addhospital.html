@@ -1,0 +1,111 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="col-md-12">
+                <div class="row">
+                <div class="col-md-6">
+<form>
+    <h2 >Registration Form</h2>
+    <label><b>Name:</b></label>
+    <input type="text" id="name"><br><br>
+    <label><b>Age:</b></label>
+    <input type="number" id="age"><br><br>
+    <label><b>Email:</b></label>
+    <input type="text" id="email"><br><br>
+    <label><b>Phoneno:</b></label>
+    <input type="number" id="phoneno"><br><br>
+    <label><b>Address:</b></label>
+    <input type="text" id="address"><br><br>
+    <button type="button" id="addbtn" onclick="display()">submit</button>
+    <button type="button" id="updatebtn" onclick="update()">update</button>
+
+    
+                </div>
+                <div class="col-md-6">
+                    <table id="mytable" class="table table-striped">
+                        <h2>Table</h2>
+                        <tr>
+                            <th>Action</th>
+                            <th>Name</th>
+                            <th>Age</th>
+                            <th>Email</th>
+                            <th>Phoneno</th>
+                            <th>Address</th>
+                        </tr>
+                </div>
+            </div>
+        </div>
+        </div>
+        </body>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+    $("#updatebtn").hide();
+    var count = 0;
+    function display() {
+        count++;
+        var name = $("#name").val();
+        var age = $("#age").val();
+        var email = $("#email").val();
+        var phoneno = $("#phoneno").val();
+        var address = $("#address").val();
+
+
+        var data = "<tr id=\"row" + count + "\"><td><button type=\"button\" onclick=\"edit('" + name + "','" + age + "','" + email + "','" + phoneno + "','" + address + "','" + count + "')\">edit</button><button type=\"button\" onclick=\"delete1('" + count + "')\">delete</button></td><td>" + name + "</td><td>" + age + "</td><td>" + email + "</td><td>" + phoneno + "</td><td>" + address + "</td></tr>";
+        $("#mytable").append(data);
+        $("#name").val("");
+        $("#age").val("");
+        $("#email").val("");
+        $("#phoneno").val("");
+        $("#address").val("");
+
+    }
+    function edit(name, age, email, phoneno, address, cnt) {
+        $("#id").val(cnt);
+        $("#name").val(name);
+        $("#age").val(age);
+        $("#email").val(email);
+        $("#phoneno").val(phoneno);
+        $("#address").val(address);
+        $("#updatebtn").show();
+        $("#addbtn").hide();
+    }
+
+    function delete1(cnt) {
+        $("#row" + cnt + "").remove();
+        $("#name").val("");
+        $("#age").val("");
+        $("#email").val("");
+        $("#phoneno").val("");
+        $("#address").val("");
+    }
+
+    function update(){
+        var name = $("#name").val();
+        var age = $("#age").val();
+        var email = $("#email").val();
+        var phoneno = $("#phoneno").val();
+        var address = $("#address").val();
+        var id1 = $("#id").val();
+
+        $("#row" +id1+"").empty();
+
+        var data = "<td><button type=\"button\" onclick=\"edit('" + name + "','" + age + "','" + email + "','" + phoneno + "','" + address + "','" + id1 + "')\">edit</button><button type=\"button\" onclick=\"delete1('" + id1 + "')\">delete</button></td><td>" + name + "</td><td>" + age + "</td><td>" + email + "</td><td>" + phoneno + "</td><td>" + address + "</td>";
+        
+        $("#row" +id1+"").append(data);
+
+        $("#name").val("");
+        $("#age").val("");
+        $("#email").val("");
+        $("#phoneno").val("");
+        $("#address").val("");
+        $("#id").val("");
+        $("#updatebtn").hide();
+        $("#addbtn").show();
+    }
+
+</script>
+
+</html>
